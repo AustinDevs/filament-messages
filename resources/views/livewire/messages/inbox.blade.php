@@ -6,7 +6,7 @@
 @props(['selectedConversation'])
 <div wire:poll.visible.{{ $pollInterval }}="loadConversations" style="--col-span-default: span 1 / span 1; height: inherit" class="col-[--col-span-default] bg-white shadow-sm rounded-xl ring-1 ring-gray-950/5 dark:divide-white/10 dark:bg-gray-900 dark:ring-white/10 p-6">
     <div class="grid grid-cols-[--cols-default] lg:grid-cols-[--cols-lg] fi-fo-component-ctn gap-6" style="--cols-default: repeat(1, minmax(0, 1fr)); --cols-lg: repeat(5, minmax(0, 1fr));">
-        <div style="--col-span-default: span 3 / span 3;" class="col-[--col-span-default]">
+        <div style="--col-span-default: span 2 / span 2;" class="col-[--col-span-default]">
             <div class="flex gap-6">
                 <p class="text-lg font-bold">{{__('Inbox')}}</p>
                 @if ($this->unreadCount() > 0)
@@ -16,7 +16,7 @@
                 @endif
             </div>
         </div>
-        <div style="--col-span-default: span 2 / span 2;" class="col-[--col-span-default]">
+        <div style="--col-span-default: span 3 / span 3;" class="col-[--col-span-default] flex justify-end gap-2">
             {{ $this->createConversation }}
         </div>
         <div style="--col-span-default: 1 / -1;" class="col-[--col-span-default]">

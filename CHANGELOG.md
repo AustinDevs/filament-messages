@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 ## [2.0.0] - 2026-01-04
+### Added
+- **Programmatic Message API:** New `MessageService` for sending messages programmatically
+  - `sendMessage()` - Send a message to an existing inbox
+  - `sendMessageToUsers()` - Send message and create inbox if needed
+  - `getOrCreateInbox()` - Get or create an inbox for users
+  - `getMessages()` - Retrieve messages from an inbox
+  - `getLatestMessage()` - Get the most recent message
+  - `getUserInboxes()` - Get all inboxes for a user
+  - `getUnreadCount()` - Get unread message count
+  - `markAsRead()` - Mark messages as read
+- Perfect for integrating with AI bots, webhooks, or automated systems
+
 ### Changed
 - **BREAKING:** Updated to support Filament v4.0
 - Updated `composer.json` to require `filament/filament: ^4.0` and `filament/spatie-laravel-media-library-plugin: ^4.0`
