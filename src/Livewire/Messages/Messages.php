@@ -2,11 +2,15 @@
 
 namespace Raseldev99\FilamentMessages\Livewire\Messages;
 
-use Filament\Forms;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Schema\Components\Actions;
+use Filament\Schema\Components\Actions\Action;
+use Filament\Schema\Components\SpatieMediaLibraryFileUpload;
+use Filament\Schema\Components\Split;
+use Filament\Schema\Components\Textarea;
+use Filament\Schema\Concerns\InteractsWithSchemas;
+use Filament\Schema\Contracts\HasSchemas;
+use Filament\Schema\Schema;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -24,9 +28,9 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class Messages extends Component implements HasForms
+class Messages extends Component implements HasSchemas
 {
-    use CanMarkAsRead, CanValidateFiles, HasPollInterval, InteractsWithForms, WithPagination;
+    use CanMarkAsRead, CanValidateFiles, HasPollInterval, InteractsWithSchemas, WithPagination;
 
     public $selectedConversation;
 
@@ -97,11 +101,11 @@ class Messages extends Component implements HasForms
     }
 
     /**
-     * Customize the form schema for the Messages component.
+     * Customize the schema for the Messages component.
      *
-     * This method defines the form schema used by the Messages component,
+     * This method defines the schema used by the Messages component,
      * which includes support for file uploads and a message textarea.
-     * The form state is stored in the 'data' property.
+     * The schema state is stored in the 'data' property.
      *
      * - The 'attachments' field allows multiple file uploads and is
      *   conditionally visible based on the 'showUpload' property.
@@ -110,14 +114,14 @@ class Messages extends Component implements HasForms
      * - The 'message' field is a textarea that supports live updates
      *   and automatically adjusts its height based on the content.
      *
-     * @param Form $form The form instance.
-     * @return Form The customized form instance.
+     * @param Schema $schema The schema instance.
+     * @return Schema The customized schema instance.
      */
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\SpatieMediaLibraryFileUpload::make('attachments')
+        return $schema
+            ->components([
+                SpatieMediaLibraryFileUpload::make('attachments')
                     ->hiddenLabel()
                     ->collection(MediaCollectionType::FILAMENT_MESSAGES->value)
                     ->multiple()
@@ -128,16 +132,16 @@ class Messages extends Component implements HasForms
                     ->maxSize(config('filament-messages.attachments.max_file_size'))
                     ->minSize(config('filament-messages.attachments.min_file_size'))
                     ->live(),
-                Forms\Components\Split::make([
-                    Forms\Components\Actions::make([
-                        Forms\Components\Actions\Action::make('show_hide_upload')
+                Split::make([
+                    Actions::make([
+                        Action::make('show_hide_upload')
                             ->hiddenLabel()
                             ->icon('heroicon-o-paper-clip')
                             ->color('gray')
                             ->tooltip(__('Attach Files'))
                             ->action(fn () => $this->showUpload = !$this->showUpload),
                     ])->grow(false),
-                    Forms\Components\Textarea::make('message')
+                    Textarea::make('message')
                         ->live()
                         ->hiddenLabel()
                         ->rows(1)
