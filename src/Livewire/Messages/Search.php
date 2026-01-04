@@ -1,13 +1,13 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Livewire\Messages;
+namespace AustinDevs\FilamentMessages\Livewire\Messages;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Raseldev99\FilamentMessages\Models\Message;
+use AustinDevs\FilamentMessages\Models\Message;
 use Livewire\Attributes\On;
 use Livewire\Component;
 

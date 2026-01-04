@@ -1,6 +1,6 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Commands;
+namespace AustinDevs\FilamentMessages\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -37,13 +37,13 @@ class FilamentMessagesCommand extends Command
 
         // Publish migrations
         Artisan::call('vendor:publish', [
-            '--provider' => 'Raseldev99\FilamentMessages\FilamentMessagesServiceProvider',
+            '--provider' => 'AustinDevs\FilamentMessages\FilamentMessagesServiceProvider',
             '--tag' => 'filament-messages-migrations',
         ]);
 
         // Publish configuration
         Artisan::call('vendor:publish', [
-            '--provider' => 'Raseldev99\FilamentMessages\FilamentMessagesServiceProvider',
+            '--provider' => 'AustinDevs\FilamentMessages\FilamentMessagesServiceProvider',
             '--tag' => 'filament-messages-config',
         ]);
 

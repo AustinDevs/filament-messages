@@ -1,11 +1,11 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Facades;
+namespace AustinDevs\FilamentMessages\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Raseldev99\FilamentMessages\FilamentMessages
+ * @see \AustinDevs\FilamentMessages\FilamentMessages
  */
 class FilamentMessages extends Facade
 {
@@ -16,6 +16,6 @@ class FilamentMessages extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return \Raseldev99\FilamentMessages\FilamentMessages::class;
+        return \AustinDevs\FilamentMessages\FilamentMessages::class;
     }
 }

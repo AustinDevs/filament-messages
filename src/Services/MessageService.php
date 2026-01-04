@@ -1,9 +1,9 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Services;
+namespace AustinDevs\FilamentMessages\Services;
 
-use Raseldev99\FilamentMessages\Models\Inbox;
-use Raseldev99\FilamentMessages\Models\Message;
+use AustinDevs\FilamentMessages\Models\Inbox;
+use AustinDevs\FilamentMessages\Models\Message;
 
 class MessageService
 {

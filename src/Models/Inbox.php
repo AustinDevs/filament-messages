@@ -1,6 +1,6 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Models;
+namespace AustinDevs\FilamentMessages\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -55,7 +55,7 @@ class Inbox extends Model
     /**
      * Retrieves an attribute representing all messages associated with the inbox.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\Raseldev99\FilamentMessages\Models\Message>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\AustinDevs\FilamentMessages\Models\Message>
      */
     public function messages(): HasMany
     {
@@ -68,7 +68,7 @@ class Inbox extends Model
      * This method fetches the most recent message associated with the inbox by
      * ordering the messages in descending order of creation.
      *
-     * @return \Raseldev99\FilamentMessages\Models\Message|null
+     * @return \AustinDevs\FilamentMessages\Models\Message|null
      */
     public function latestMessage(): Message | null
     {

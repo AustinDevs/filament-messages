@@ -1,9 +1,9 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Livewire\Traits;
+namespace AustinDevs\FilamentMessages\Livewire\Traits;
 
 use Illuminate\Support\Facades\Auth;
-use Raseldev99\FilamentMessages\Models\Message;
+use AustinDevs\FilamentMessages\Models\Message;
 
 trait CanMarkAsRead
 {

@@ -1,25 +1,25 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Livewire\Messages;
+namespace AustinDevs\FilamentMessages\Livewire\Messages;
 
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Schema\Components\Select;
-use Filament\Schema\Components\Textarea;
-use Filament\Schema\Components\TextInput;
-use Filament\Schema\Concerns\InteractsWithSchemas;
-use Filament\Schema\Contracts\HasSchemas;
-use Filament\Schema\Get;
-use Filament\Support\Enums\MaxWidth;
+use Filament\Schemas\Components\Select;
+use Filament\Schemas\Components\Textarea;
+use Filament\Schemas\Components\TextInput;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Schemas\Get;
+use Filament\Support\Enums\Width;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
-use Raseldev99\FilamentMessages\FilamentMessages;
-use Raseldev99\FilamentMessages\Livewire\Traits\CanMarkAsRead;
-use Raseldev99\FilamentMessages\Livewire\Traits\CanValidateFiles;
-use Raseldev99\FilamentMessages\Livewire\Traits\HasPollInterval;
+use AustinDevs\FilamentMessages\FilamentMessages;
+use AustinDevs\FilamentMessages\Livewire\Traits\CanMarkAsRead;
+use AustinDevs\FilamentMessages\Livewire\Traits\CanValidateFiles;
+use AustinDevs\FilamentMessages\Livewire\Traits\HasPollInterval;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -55,7 +55,7 @@ class Inbox extends Component implements HasActions, HasSchemas
      */
     public function unreadCount(): int
     {
-        return \Raseldev99\FilamentMessages\Models\Inbox::whereJsonContains('user_ids', Auth::id())
+        return \AustinDevs\FilamentMessages\Models\Inbox::whereJsonContains('user_ids', Auth::id())
             ->whereHas('messages', function ($query) {
                 $query->whereJsonDoesntContain('read_by', Auth::id());
             })->get()->count();
@@ -116,14 +116,14 @@ class Inbox extends Component implements HasActions, HasSchemas
             ])
             ->modalHeading(__('Create New Message'))
             ->modalSubmitActionLabel(__('Send'))
-            ->modalWidth(MaxWidth::Large)
+            ->modalWidth(Width::Large)
             ->action(function (array $data) {
                 $userIds = collect($data['user_ids'])->push(Auth::id())->map(fn ($userId) => (int)$userId);
                 $totalUserIds = $userIds->count();
-                $inbox = \Raseldev99\FilamentMessages\Models\Inbox::whereRaw("JSON_CONTAINS(user_ids, \"$userIds\") AND JSON_LENGTH(user_ids) = $totalUserIds")->first();
+                $inbox = \AustinDevs\FilamentMessages\Models\Inbox::whereRaw("JSON_CONTAINS(user_ids, \"$userIds\") AND JSON_LENGTH(user_ids) = $totalUserIds")->first();
                 $inboxId = null;
                 if (!$inbox) {
-                    $inbox = \Raseldev99\FilamentMessages\Models\Inbox::create([
+                    $inbox = \AustinDevs\FilamentMessages\Models\Inbox::create([
                         'title' => $data['title'] ?? null,
                         'user_ids' => $userIds
                     ]);
@@ -140,7 +140,7 @@ class Inbox extends Component implements HasActions, HasSchemas
                     'read_at' => [now()],
                     'notified' => [Auth::id()],
                 ]);
-                redirect(\Raseldev99\FilamentMessages\Filament\Pages\Messages::getUrl(['id' => $inboxId]));
+                redirect(\AustinDevs\FilamentMessages\Filament\Pages\Messages::getUrl(['id' => $inboxId]));
             })->extraAttributes([
                 'class' => 'w-full'
             ]);

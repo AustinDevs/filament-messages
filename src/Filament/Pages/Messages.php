@@ -1,16 +1,17 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Filament\Pages;
+namespace AustinDevs\FilamentMessages\Filament\Pages;
 
 use Filament\Pages\Page;
-use Filament\Support\Enums\MaxWidth;
+use Filament\Panel;
+use Filament\Support\Enums\Width;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Auth;
-use Raseldev99\FilamentMessages\Models\Inbox;
+use AustinDevs\FilamentMessages\Models\Inbox;
 
 class Messages extends Page
 {
-    protected static string $view = 'filament-messages::filament.pages.messages';
+    protected string $view = 'filament-messages::filament.pages.messages';
 
     public ?Inbox $selectedConversation;
 
@@ -19,7 +20,7 @@ class Messages extends Page
      *
      * @return string The slug with an optional ID placeholder.
      */
-    public static function getSlug(): string
+    public static function getSlug(?Panel $panel = null): string
     {
         return config('filament-messages.slug') . '/{id?}';
     }
@@ -162,7 +163,7 @@ class Messages extends Page
      *
      * @return \Filament\Support\Enums\MaxWidth|string|null The maximum content width.
      */
-    public function getMaxContentWidth(): MaxWidth | string | null
+    public function getMaxContentWidth(): Width | string | null
     {
         return config('filament-messages.max_content_width');
     }

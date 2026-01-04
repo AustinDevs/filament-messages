@@ -1,5 +1,5 @@
 <?php
 
-namespace Raseldev99\FilamentMessages;
+namespace AustinDevs\FilamentMessages;
 
 class FilamentMessages {}

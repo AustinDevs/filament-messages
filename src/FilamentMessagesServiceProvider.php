@@ -1,13 +1,13 @@
 <?php
 
-namespace Raseldev99\FilamentMessages;
+namespace AustinDevs\FilamentMessages;
 
 use Filament\Support\Assets\Asset;
 use Filament\Support\Facades\FilamentIcon;
-use Raseldev99\FilamentMessages\Livewire\Messages\Inbox;
-use Raseldev99\FilamentMessages\Livewire\Messages\Messages;
-use Raseldev99\FilamentMessages\Livewire\Messages\Search;
-use Raseldev99\FilamentMessages\Commands\FilamentMessagesCommand;
+use AustinDevs\FilamentMessages\Livewire\Messages\Inbox;
+use AustinDevs\FilamentMessages\Livewire\Messages\Messages;
+use AustinDevs\FilamentMessages\Livewire\Messages\Search;
+use AustinDevs\FilamentMessages\Commands\FilamentMessagesCommand;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Enums;
+namespace AustinDevs\FilamentMessages\Enums;
 
 enum MediaCollectionType: string
 {

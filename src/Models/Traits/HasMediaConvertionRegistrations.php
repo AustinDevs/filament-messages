@@ -1,8 +1,8 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Models\Traits;
+namespace AustinDevs\FilamentMessages\Models\Traits;
 
-use Raseldev99\FilamentMessages\Enums\MediaConversion;
+use AustinDevs\FilamentMessages\Enums\MediaConversion;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\InteractsWithMedia;
 

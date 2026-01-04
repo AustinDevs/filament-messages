@@ -1,6 +1,6 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Livewire\Traits;
+namespace AustinDevs\FilamentMessages\Livewire\Traits;
 
 trait CanValidateFiles
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Livewire\Messages;
+namespace AustinDevs\FilamentMessages\Livewire\Messages;
 
 use Filament\Notifications\Notification;
-use Filament\Schema\Components\Actions;
-use Filament\Schema\Components\Actions\Action;
-use Filament\Schema\Components\SpatieMediaLibraryFileUpload;
-use Filament\Schema\Components\Split;
-use Filament\Schema\Components\Textarea;
-use Filament\Schema\Concerns\InteractsWithSchemas;
-use Filament\Schema\Contracts\HasSchemas;
-use Filament\Schema\Schema;
+use Filament\Schemas\Components\Actions;
+use Filament\Schemas\Components\Actions\Action;
+use Filament\Schemas\Components\SpatieMediaLibraryFileUpload;
+use Filament\Schemas\Components\Split;
+use Filament\Schemas\Components\Textarea;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,10 +19,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Raseldev99\FilamentMessages\Enums\MediaCollectionType;
-use Raseldev99\FilamentMessages\Livewire\Traits\CanMarkAsRead;
-use Raseldev99\FilamentMessages\Livewire\Traits\CanValidateFiles;
-use Raseldev99\FilamentMessages\Livewire\Traits\HasPollInterval;
+use AustinDevs\FilamentMessages\Enums\MediaCollectionType;
+use AustinDevs\FilamentMessages\Livewire\Traits\CanMarkAsRead;
+use AustinDevs\FilamentMessages\Livewire\Traits\CanValidateFiles;
+use AustinDevs\FilamentMessages\Livewire\Traits\HasPollInterval;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;

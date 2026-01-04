@@ -1,13 +1,13 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Models;
+namespace AustinDevs\FilamentMessages\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Raseldev99\FilamentMessages\Enums\MediaCollectionType;
-use Raseldev99\FilamentMessages\Models\Traits\HasMediaConvertionRegistrations;
+use AustinDevs\FilamentMessages\Enums\MediaCollectionType;
+use AustinDevs\FilamentMessages\Models\Traits\HasMediaConvertionRegistrations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Raseldev99\FilamentMessages\Models\Traits;
+namespace AustinDevs\FilamentMessages\Models\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Raseldev99\FilamentMessages\Models\Inbox;
+use AustinDevs\FilamentMessages\Models\Inbox;
 
 trait HasFilamentMessages
 {

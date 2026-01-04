@@ -1,10 +1,10 @@
 <?php
 
-namespace Raseldev99\FilamentMessages;
+namespace AustinDevs\FilamentMessages;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Raseldev99\FilamentMessages\Filament\Pages\Messages;
+use AustinDevs\FilamentMessages\Filament\Pages\Messages;
 
 class FilamentMessagesPlugin implements Plugin
 {
