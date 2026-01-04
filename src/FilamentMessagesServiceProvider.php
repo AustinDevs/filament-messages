@@ -4,6 +4,7 @@ namespace Raseldev99\FilamentMessages;
 
 use Filament\Support\Assets\Asset;
 use Filament\Support\Facades\FilamentIcon;
+use Raseldev99\FilamentMessages\Livewire\Messages\AutoReplySettings;
 use Raseldev99\FilamentMessages\Livewire\Messages\Inbox;
 use Raseldev99\FilamentMessages\Livewire\Messages\Messages;
 use Raseldev99\FilamentMessages\Livewire\Messages\Search;
@@ -78,6 +79,7 @@ class FilamentMessagesServiceProvider extends PackageServiceProvider
         Livewire::component('fm-inbox', Inbox::class);
         Livewire::component('fm-messages', Messages::class);
         Livewire::component('fm-search', Search::class);
+        Livewire::component('fm-auto-reply-settings', AutoReplySettings::class);
     }
 
     /**
@@ -165,6 +167,7 @@ class FilamentMessagesServiceProvider extends PackageServiceProvider
         return [
             'create_fm_inboxes_table',
             'create_fm_messages_table',
+            'create_fm_auto_replies_table',
         ];
     }
 }

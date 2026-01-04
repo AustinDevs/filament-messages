@@ -130,4 +130,80 @@ return [
     |
     */
     'poll_interval' => '5s',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto-Reply Settings
+    |--------------------------------------------------------------------------
+    |
+    | These settings control the auto-reply feature for the messaging system.
+    | Auto-replies allow users to set up automatic responses when they receive
+    | messages, useful for vacation messages, away notifications, etc.
+    |
+    */
+    'auto_reply' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Enable Auto-Reply Feature
+        |--------------------------------------------------------------------------
+        |
+        | This setting enables or disables the auto-reply feature entirely.
+        | When disabled, users will not see the auto-reply settings option.
+        |
+        */
+        'enabled' => true,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Maximum Auto-Replies Per User
+        |--------------------------------------------------------------------------
+        |
+        | This setting limits the number of auto-reply rules a user can create.
+        | Set to 0 for unlimited auto-replies.
+        |
+        */
+        'max_per_user' => 5,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Default Trigger Type
+        |--------------------------------------------------------------------------
+        |
+        | The default trigger type for new auto-replies.
+        | Options: 'all', 'first_message', 'keywords'
+        |
+        */
+        'default_trigger_type' => 'all',
+
+        /*
+        |--------------------------------------------------------------------------
+        | Allow Keyword Triggers
+        |--------------------------------------------------------------------------
+        |
+        | Whether to allow users to set up keyword-based auto-reply triggers.
+        |
+        */
+        'allow_keyword_triggers' => true,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Allow Scheduled Auto-Replies
+        |--------------------------------------------------------------------------
+        |
+        | Whether to allow users to schedule auto-replies with start/end dates.
+        |
+        */
+        'allow_scheduled' => true,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Maximum Reply Delay
+        |--------------------------------------------------------------------------
+        |
+        | Maximum delay in seconds before an auto-reply is sent.
+        | This prevents users from setting extremely long delays.
+        |
+        */
+        'max_reply_delay_seconds' => 3600, // 1 hour
+    ],
 ];

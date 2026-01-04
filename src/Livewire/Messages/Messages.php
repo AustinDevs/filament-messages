@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Raseldev99\FilamentMessages\Enums\MediaCollectionType;
+use Raseldev99\FilamentMessages\Services\AutoReplyService;
 use Raseldev99\FilamentMessages\Livewire\Traits\CanMarkAsRead;
 use Raseldev99\FilamentMessages\Livewire\Traits\CanValidateFiles;
 use Raseldev99\FilamentMessages\Livewire\Traits\HasPollInterval;
@@ -169,7 +170,9 @@ class Messages extends Component implements HasSchemas
         $rawData = $this->form->getRawState();
 
         try {
-            DB::transaction(function () use ($data, $rawData) {
+            $newMessage = null;
+
+            DB::transaction(function () use ($data, $rawData, &$newMessage) {
                 $this->showUpload = false;
 
                 $newMessage = $this->selectedConversation->messages()->create([
@@ -193,6 +196,11 @@ class Messages extends Component implements HasSchemas
 
                 $this->dispatch('refresh-inbox');
             });
+
+            // Process auto-replies after the transaction completes
+            if ($newMessage) {
+                app(AutoReplyService::class)->processAutoReplies($newMessage, $this->selectedConversation);
+            }
         } catch (\Exception $exception) {
             Notification::make()
                 ->title(__('Something went wrong'))

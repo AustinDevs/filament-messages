@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 
 ## [2.0.0] - 2026-01-04
+### Added
+- **Auto-Reply Feature:** Users can now set up automated replies for messages
+  - Support for multiple trigger types: All messages, First message only, Keyword match
+  - Scheduled auto-replies with start/end dates
+  - Configurable reply delay
+  - Option to reply once per conversation
+  - Message placeholders: `{sender_name}`, `{recipient_name}`, `{date}`, `{time}`
+- New `AutoReply` model and database migration
+- New `AutoReplyService` for processing auto-replies
+- New `AutoReplySettings` Livewire component for managing auto-replies
+- Added auto-reply methods to `HasFilamentMessages` trait
+- Added comprehensive configuration options for auto-replies in config file
+
 ### Changed
 - **BREAKING:** Updated to support Filament v4.0
 - Updated `composer.json` to require `filament/filament: ^4.0` and `filament/spatie-laravel-media-library-plugin: ^4.0`
