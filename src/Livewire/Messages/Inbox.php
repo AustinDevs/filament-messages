@@ -5,9 +5,12 @@ namespace Raseldev99\FilamentMessages\Livewire\Messages;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Forms;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
+use Filament\Schema\Components\Select;
+use Filament\Schema\Components\Textarea;
+use Filament\Schema\Components\TextInput;
+use Filament\Schema\Concerns\InteractsWithSchemas;
+use Filament\Schema\Contracts\HasSchemas;
+use Filament\Schema\Get;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -20,9 +23,9 @@ use Raseldev99\FilamentMessages\Livewire\Traits\HasPollInterval;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Inbox extends Component implements HasActions, HasForms
+class Inbox extends Component implements HasActions, HasSchemas
 {
-    use CanMarkAsRead, CanValidateFiles, HasPollInterval, InteractsWithActions, InteractsWithForms;
+    use CanMarkAsRead, CanValidateFiles, HasPollInterval, InteractsWithActions, InteractsWithSchemas;
 
     public $conversations;
 
@@ -93,7 +96,7 @@ class Inbox extends Component implements HasActions, HasForms
             ->icon('heroicon-o-plus')
             ->label(__('Create'))
             ->form([
-                Forms\Components\Select::make('user_ids')
+                Select::make('user_ids')
                     ->label(__('Select User(s)'))
                     ->options(fn () => \App\Models\User::whereNotIn('id', [Auth::id()])->get()->pluck('name', 'id'))
                     ->preload(false)
@@ -101,12 +104,12 @@ class Inbox extends Component implements HasActions, HasForms
                     ->searchable()
                     ->required()
                     ->live(),
-                Forms\Components\TextInput::make('title')
+                TextInput::make('title')
                     ->label(__('Group Name'))
-                    ->visible(function (Forms\Get $get) {
+                    ->visible(function (Get $get) {
                         return collect($get('user_ids'))->count() > 1;
                     }),
-                Forms\Components\Textarea::make('message')
+                Textarea::make('message')
                     ->placeholder(__('Write a message...'))
                     ->required()
                     ->autosize(),
