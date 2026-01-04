@@ -4,15 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [2.0.0] - 2026-01-04
 ### Added
-- **AI Responder Feature:** Integrate AI-powered automatic responses in conversations
-  - Support for OpenAI (GPT-4, etc.) and Anthropic (Claude) providers
-  - Custom provider support via callback function
-  - Configurable system prompt to define AI personality and behavior
-  - Rate limiting to prevent excessive AI responses
-  - Conversation context for contextual responses
-  - Message placeholders: `{sender_name}`, `{recipient_name}`, `{date}`, `{time}`
-- New `AiResponderService` for processing AI-powered responses
-- Comprehensive configuration via environment variables
+- **Programmatic Message API:** New `MessageService` for sending messages programmatically
+  - `sendMessage()` - Send a message to an existing inbox
+  - `sendMessageToUsers()` - Send message and create inbox if needed
+  - `getOrCreateInbox()` - Get or create an inbox for users
+  - `getMessages()` - Retrieve messages from an inbox
+  - `getLatestMessage()` - Get the most recent message
+  - `getUserInboxes()` - Get all inboxes for a user
+  - `getUnreadCount()` - Get unread message count
+  - `markAsRead()` - Mark messages as read
+- Perfect for integrating with AI bots, webhooks, or automated systems
 
 ### Changed
 - **BREAKING:** Updated to support Filament v4.0

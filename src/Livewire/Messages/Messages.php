@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Raseldev99\FilamentMessages\Enums\MediaCollectionType;
-use Raseldev99\FilamentMessages\Services\AiResponderService;
 use Raseldev99\FilamentMessages\Livewire\Traits\CanMarkAsRead;
 use Raseldev99\FilamentMessages\Livewire\Traits\CanValidateFiles;
 use Raseldev99\FilamentMessages\Livewire\Traits\HasPollInterval;
@@ -170,9 +169,7 @@ class Messages extends Component implements HasSchemas
         $rawData = $this->form->getRawState();
 
         try {
-            $newMessage = null;
-
-            DB::transaction(function () use ($data, $rawData, &$newMessage) {
+            DB::transaction(function () use ($data, $rawData) {
                 $this->showUpload = false;
 
                 $newMessage = $this->selectedConversation->messages()->create([
@@ -196,11 +193,6 @@ class Messages extends Component implements HasSchemas
 
                 $this->dispatch('refresh-inbox');
             });
-
-            // Process AI responses after the transaction completes
-            if ($newMessage) {
-                app(AiResponderService::class)->processAiResponse($newMessage, $this->selectedConversation);
-            }
         } catch (\Exception $exception) {
             Notification::make()
                 ->title(__('Something went wrong'))
