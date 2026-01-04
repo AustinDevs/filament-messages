@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Raseldev99\FilamentMessages\Enums\MediaCollectionType;
-use Raseldev99\FilamentMessages\Services\AutoReplyService;
+use Raseldev99\FilamentMessages\Services\AiResponderService;
 use Raseldev99\FilamentMessages\Livewire\Traits\CanMarkAsRead;
 use Raseldev99\FilamentMessages\Livewire\Traits\CanValidateFiles;
 use Raseldev99\FilamentMessages\Livewire\Traits\HasPollInterval;
@@ -197,9 +197,9 @@ class Messages extends Component implements HasSchemas
                 $this->dispatch('refresh-inbox');
             });
 
-            // Process auto-replies after the transaction completes
+            // Process AI responses after the transaction completes
             if ($newMessage) {
-                app(AutoReplyService::class)->processAutoReplies($newMessage, $this->selectedConversation);
+                app(AiResponderService::class)->processAiResponse($newMessage, $this->selectedConversation);
             }
         } catch (\Exception $exception) {
             Notification::make()

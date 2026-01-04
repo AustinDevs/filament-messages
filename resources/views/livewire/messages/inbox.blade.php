@@ -17,14 +17,6 @@
             </div>
         </div>
         <div style="--col-span-default: span 3 / span 3;" class="col-[--col-span-default] flex justify-end gap-2">
-            @if(config('filament-messages.auto_reply.enabled', true))
-                <x-filament::icon-button
-                    icon="heroicon-o-cog-6-tooth"
-                    color="gray"
-                    x-on:click="$dispatch('open-modal', { id: 'auto-reply-settings' })"
-                    :tooltip="__('Auto-Reply Settings')"
-                />
-            @endif
             {{ $this->createConversation }}
         </div>
         <div style="--col-span-default: 1 / -1;" class="col-[--col-span-default]">
@@ -34,9 +26,6 @@
         </div>
     </div>
     <livewire:fm-search />
-    @if(config('filament-messages.auto_reply.enabled', true))
-        <livewire:fm-auto-reply-settings />
-    @endif
 
     <!-- Inbox : Start -->
     <div @style([

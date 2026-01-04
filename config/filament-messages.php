@@ -133,77 +133,135 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Auto-Reply Settings
+    | AI Responder Settings
     |--------------------------------------------------------------------------
     |
-    | These settings control the auto-reply feature for the messaging system.
-    | Auto-replies allow users to set up automatic responses when they receive
-    | messages, useful for vacation messages, away notifications, etc.
+    | These settings control the AI-powered automatic responder feature.
+    | When enabled, an AI assistant can automatically respond to messages
+    | in conversations where the AI user is a participant.
     |
     */
-    'auto_reply' => [
+    'ai_responder' => [
         /*
         |--------------------------------------------------------------------------
-        | Enable Auto-Reply Feature
+        | Enable AI Responder
         |--------------------------------------------------------------------------
         |
-        | This setting enables or disables the auto-reply feature entirely.
-        | When disabled, users will not see the auto-reply settings option.
+        | This setting enables or disables the AI responder feature entirely.
         |
         */
-        'enabled' => true,
+        'enabled' => env('FILAMENT_MESSAGES_AI_ENABLED', false),
 
         /*
         |--------------------------------------------------------------------------
-        | Maximum Auto-Replies Per User
+        | AI User ID
         |--------------------------------------------------------------------------
         |
-        | This setting limits the number of auto-reply rules a user can create.
-        | Set to 0 for unlimited auto-replies.
+        | The user ID that represents the AI assistant in conversations.
+        | Create a user in your database to represent the AI and set its ID here.
+        | The AI will respond to messages in conversations where this user is included.
         |
         */
-        'max_per_user' => 5,
+        'user_id' => env('FILAMENT_MESSAGES_AI_USER_ID'),
 
         /*
         |--------------------------------------------------------------------------
-        | Default Trigger Type
+        | AI Provider
         |--------------------------------------------------------------------------
         |
-        | The default trigger type for new auto-replies.
-        | Options: 'all', 'first_message', 'keywords'
+        | The AI provider to use for generating responses.
+        | Supported: 'openai', 'anthropic', 'custom'
         |
         */
-        'default_trigger_type' => 'all',
+        'provider' => env('FILAMENT_MESSAGES_AI_PROVIDER', 'openai'),
 
         /*
         |--------------------------------------------------------------------------
-        | Allow Keyword Triggers
+        | System Prompt
         |--------------------------------------------------------------------------
         |
-        | Whether to allow users to set up keyword-based auto-reply triggers.
+        | The system prompt that defines the AI assistant's behavior and personality.
+        | This is sent to the AI with every request to guide its responses.
         |
         */
-        'allow_keyword_triggers' => true,
+        'system_prompt' => env('FILAMENT_MESSAGES_AI_SYSTEM_PROMPT', 'You are a helpful customer support assistant. Be friendly, professional, and concise in your responses. If you don\'t know something, say so honestly.'),
 
         /*
         |--------------------------------------------------------------------------
-        | Allow Scheduled Auto-Replies
+        | Max Tokens
         |--------------------------------------------------------------------------
         |
-        | Whether to allow users to schedule auto-replies with start/end dates.
+        | Maximum number of tokens for the AI response.
         |
         */
-        'allow_scheduled' => true,
+        'max_tokens' => env('FILAMENT_MESSAGES_AI_MAX_TOKENS', 500),
 
         /*
         |--------------------------------------------------------------------------
-        | Maximum Reply Delay
+        | Temperature
         |--------------------------------------------------------------------------
         |
-        | Maximum delay in seconds before an auto-reply is sent.
-        | This prevents users from setting extremely long delays.
+        | Controls randomness in the AI response (0.0 to 1.0).
+        | Lower values make responses more focused and deterministic.
         |
         */
-        'max_reply_delay_seconds' => 3600, // 1 hour
+        'temperature' => env('FILAMENT_MESSAGES_AI_TEMPERATURE', 0.7),
+
+        /*
+        |--------------------------------------------------------------------------
+        | Rate Limit (Minutes)
+        |--------------------------------------------------------------------------
+        |
+        | Minimum time between AI responses in the same conversation.
+        | Prevents the AI from responding too frequently.
+        |
+        */
+        'rate_limit_minutes' => env('FILAMENT_MESSAGES_AI_RATE_LIMIT', 1),
+
+        /*
+        |--------------------------------------------------------------------------
+        | Context Messages
+        |--------------------------------------------------------------------------
+        |
+        | Number of previous messages to include as context for the AI.
+        |
+        */
+        'context_messages' => env('FILAMENT_MESSAGES_AI_CONTEXT_MESSAGES', 10),
+
+        /*
+        |--------------------------------------------------------------------------
+        | OpenAI Settings
+        |--------------------------------------------------------------------------
+        */
+        'openai' => [
+            'api_key' => env('OPENAI_API_KEY'),
+            'model' => env('FILAMENT_MESSAGES_OPENAI_MODEL', 'gpt-4o'),
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Anthropic (Claude) Settings
+        |--------------------------------------------------------------------------
+        */
+        'anthropic' => [
+            'api_key' => env('ANTHROPIC_API_KEY'),
+            'model' => env('FILAMENT_MESSAGES_ANTHROPIC_MODEL', 'claude-sonnet-4-20250514'),
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Custom Provider Callback
+        |--------------------------------------------------------------------------
+        |
+        | When using 'custom' provider, specify a callback that receives
+        | the message, inbox, and conversation context and returns a string response.
+        |
+        | Example:
+        | 'custom_callback' => function ($message, $inbox, $context) {
+        |     return MyAiService::generateResponse($context);
+        | },
+        |
+        */
+        'custom_callback' => null,
     ],
 ];

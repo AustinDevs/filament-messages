@@ -4,17 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [2.0.0] - 2026-01-04
 ### Added
-- **Auto-Reply Feature:** Users can now set up automated replies for messages
-  - Support for multiple trigger types: All messages, First message only, Keyword match
-  - Scheduled auto-replies with start/end dates
-  - Configurable reply delay
-  - Option to reply once per conversation
+- **AI Responder Feature:** Integrate AI-powered automatic responses in conversations
+  - Support for OpenAI (GPT-4, etc.) and Anthropic (Claude) providers
+  - Custom provider support via callback function
+  - Configurable system prompt to define AI personality and behavior
+  - Rate limiting to prevent excessive AI responses
+  - Conversation context for contextual responses
   - Message placeholders: `{sender_name}`, `{recipient_name}`, `{date}`, `{time}`
-- New `AutoReply` model and database migration
-- New `AutoReplyService` for processing auto-replies
-- New `AutoReplySettings` Livewire component for managing auto-replies
-- Added auto-reply methods to `HasFilamentMessages` trait
-- Added comprehensive configuration options for auto-replies in config file
+- New `AiResponderService` for processing AI-powered responses
+- Comprehensive configuration via environment variables
 
 ### Changed
 - **BREAKING:** Updated to support Filament v4.0
